@@ -80,9 +80,9 @@ app.post('/register', (req, res) => {
       return new User({
         username: req.body.username,
         password: hash,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email
+        name: req.body.name,
+        email: req.body.email,
+        address: req.body.address
       })
         .save()
         .then((user) => {
