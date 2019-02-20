@@ -4,7 +4,7 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
-// const kanban = require('./routes/kanban');
+const api = require('./routes/api');
 const redis = require('connect-redis')(session);
 
 const User = require('./database/models/User');
@@ -112,7 +112,7 @@ function isAuthenticated(req, res, next) {
   };
 };
 
-// app.use('/api', api);
+app.use('/api', api);
 
 app.listen(PORT, function () {
   console.log(`Server running on port: ${PORT}`);
