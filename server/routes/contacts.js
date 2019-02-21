@@ -6,7 +6,7 @@ const User = require('../database/models/User');
 router.route('/')
   .get(function (req, res) {
     Contact.where('created_by', req.user.id).fetchAll({
-      columns: ['name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
+      columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
     })
       .then(function (contactList) {
         res.json(contactList);
@@ -62,5 +62,18 @@ router.route('/search/:term')
         res.json(err);
       });
   });
+
+router.route('/:id')
+  .get(function (req, res) {
+    Contact.where('id', req.params.id).fetch({
+      columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
+    })
+      .then(function (contact) {
+        res.json(contact)
+      })
+      .catch(function (err) {
+        res.json({ success: false, error: err })
+      });
+  })
 
 module.exports = router;
