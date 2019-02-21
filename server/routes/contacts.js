@@ -15,6 +15,26 @@ router.route('/')
         res.json(err);
       });
   })
+  .post(function (req, res) {
+    Contact.forge({
+      name: req.body.name,
+      address: req.body.address,
+      mobile: req.body.mobile,
+      work: req.body.work,
+      home: req.body.home,
+      email: req.body.email,
+      twitter: req.body.twitter,
+      instagram: req.body.instagram,
+      github: req.body.github,
+      created_by: req.user.id
+    }).save()
+      .then(function () {
+        res.json({ success: true });
+      })
+      .catch(function (err) {
+        res.json({ success: false, error: err })
+      })
+  })
 
 router.route('/search/:term')
   .get(function (req, res) {
