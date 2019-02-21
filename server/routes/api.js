@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const contacts = require('./contacts');
-const User = require('../database/models/User')
+const User = require('../database/models/User');
 
 router.route('/profile')
   .get(function (req, res) {
@@ -13,7 +13,7 @@ router.route('/profile')
       })
       .catch(function (err) {
         res.json(err);
-      })
+      });
   });
 
 router.route('/users')
@@ -28,7 +28,7 @@ router.route('/users')
       })
       .catch(function (err) {
         res.json(err);
-      })
+      });
   });
 
 router.use('/contacts', contacts);
