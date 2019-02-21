@@ -75,5 +75,25 @@ router.route('/:id')
         res.json({ success: false, error: err })
       });
   })
+  .put(function (req, res) {
+    let tempObj = {}
+    if (req.body.name) { tempObj.name = req.body.name };
+    if (req.body.address) { tempObj.address = req.body.address };
+    if (req.body.mobile) { tempObj.mobile = req.body.mobile };
+    if (req.body.work) { tempObj.work = req.body.work };
+    if (req.body.home) { tempObj.home = req.body.home };
+    if (req.body.email) { tempObj.email = req.body.email };
+    if (req.body.twitter) { tempObj.twitter = req.body.twitter };
+    if (req.body.instagram) { tempObj.instagram = req.body.instagram };
+    if (req.body.github) { tempObj.github = req.body.github };
+
+    Contact.where('id', req.params.id).save(tempObj, { patch: true })
+      .then(function () {
+        res.json({ success: true });
+      })
+      .catch(function (err) {
+        res.json({ success: false, error: err });
+      });
+  });
 
 module.exports = router;
