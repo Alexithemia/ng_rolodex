@@ -94,6 +94,15 @@ router.route('/:id')
       .catch(function (err) {
         res.json({ success: false, error: err });
       });
-  });
+  })
+  .delete(function (req, res) {
+    new Contact({ id: req.params.id }).destroy()
+      .then(function () {
+        res.json({ success: true });
+      })
+      .catch(function (err) {
+        res.status(500).json({ success: false, error: err });
+      });
+  })
 
 module.exports = router;
