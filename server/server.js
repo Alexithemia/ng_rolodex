@@ -112,7 +112,7 @@ function isAuthenticated(req, res, next) {
   };
 };
 
-app.use('/api', api);
+app.use('/api', isAuthenticated, api);
 
 app.listen(PORT, function () {
   console.log(`Server running on port: ${PORT}`);
