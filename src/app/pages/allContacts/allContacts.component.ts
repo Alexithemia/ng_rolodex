@@ -8,7 +8,7 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class AllContactsComponent implements OnInit {
-  contactList = []
+  contactList: object = []
 
   constructor(
     private backend: BackendService

@@ -16,11 +16,20 @@ export class BackendService {
   }
 
   login(username, password) {
-    // return this.http.get('https://').toPromise();
-    return this.session.setSession(1, username);
+    //send login info to server, 
+    return this.session.setSession(1, username); //on success return this
+    //on fail return to login with error message
   }
 
   logout() {
     return this.session.clearSession();
+  }
+
+  loadAllContacts() {
+    console.log('load all contacts from server');
+  }
+
+  editProfile(userData) {
+    console.log('Edit user to ', userData);
   }
 }

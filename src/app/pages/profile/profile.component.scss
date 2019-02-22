@@ -1,0 +1,33 @@
+h1{
+  text-align: center;
+}
+
+label{
+  font-weight: 700;
+  margin: 10px;
+}
+
+.profileBox{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.editBox{
+  display: flex;
+  justify-content: center;
+  background-color: lighten(grey, 20%);
+  position: fixed;
+  bottom: 30vh;
+  right: 30vw;
+  width: 40vw;
+  height: 40vh;
+  border-radius: 8px;
+}
+
+form{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
