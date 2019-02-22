@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SessionService } from '../../services/session.service';
 import { BackendService } from '../../services/backend.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-header',
@@ -9,18 +9,16 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class HeaderComponent {
-  loggedIn: boolean = false;
 
   constructor(private session: SessionService, private backend: BackendService) {
-    this.loggedIn = session.isLoggedIn();
+
   }
 
-  login() {
-    this.loggedIn = true;
+  isLoggedIn() {
+    return this.session.isLoggedIn()
   }
 
   logout() {
-    this.loggedIn = false;
     return this.backend.logout();
   }
 }
