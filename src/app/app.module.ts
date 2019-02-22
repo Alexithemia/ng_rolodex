@@ -7,8 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 
 import { HomeComponent } from './pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CreateContactComponent } from './pages/createContact/createContact.component';
+import { AllContactsComponent } from './pages/allContacts/allContacts.component';
 
 import { HeaderComponent } from './shared/header/header.component';
 
@@ -16,9 +18,11 @@ import { HeaderComponent } from './shared/header/header.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
+    ProfileComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    AllContactsComponent,
+    CreateContactComponent
   ],
   imports: [
     BrowserModule,
