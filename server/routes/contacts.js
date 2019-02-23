@@ -12,7 +12,7 @@ function isAuthenticated(req, res, next) {
 
 router.route('/')
   .get(isAuthenticated, function (req, res) {
-    Contact.where('created_by', req.user.id).fetchAll({
+    Contact.where('created_by', req.user.id).orderBy('name', 'ASC').fetchAll({
       columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
     })
       .then(function (contactList) {
@@ -59,7 +59,7 @@ router.route('/search/:term')
             .orWhereRaw('LOWER(instagram) LIKE ?', term)
             .orWhereRaw('LOWER(github) LIKE ?', term)
         })
-    }).fetchAll({
+    }).orderBy('name', 'ASC').fetchAll({
       columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
     })
       .then(function (contactList) {
