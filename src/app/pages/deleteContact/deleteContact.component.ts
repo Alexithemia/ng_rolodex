@@ -4,14 +4,14 @@ import { SelectService } from '../../services/select.service';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './editContact.component.html',
-  styleUrls: ['./editContact.component.scss']
+  templateUrl: './deleteContact.component.html',
+  styleUrls: ['./deleteContact.component.scss']
 })
 
-export class EditContactComponent implements OnInit {
+export class DeleteContactComponent implements OnInit {
   cardId: number = null;
 
-  formData: {
+  pageData: {
     name: string,
     address: string,
     mobile: string,
@@ -38,19 +38,19 @@ export class EditContactComponent implements OnInit {
     private router: Router,
     private select: SelectService
   ) {
-    this.cardId = this.select.editId
+    this.cardId = this.select.deleteId
   }
 
   ngOnInit() {
-    if (!this.select.editId) { return this.router.navigate(['allContacts']); }
-    this.backend.loadContact(this.select.editId)
+    if (!this.select.deleteId) { return this.router.navigate(['allContacts']); }
+    this.backend.loadContact(this.select.deleteId)
       .then((contactData: any) => {
-        this.formData = contactData;
+        this.pageData = contactData;
       })
   }
 
-  submitForm() {
-    this.backend.editContact(this.cardId, this.formData)
+  submitDelete() {
+    this.backend.deleteContact(this.cardId)
       .then(() => {
         return this.router.navigate(['allContacts']);
       })

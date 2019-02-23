@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CreateContactComponent } from './pages/createContact/createContact.component';
 import { AllContactsComponent } from './pages/allContacts/allContacts.component';
 import { EditContactComponent } from './pages/editContact/editContact.component';
+import { DeleteContactComponent } from './pages/deleteContact/deleteContact.component';
 
 import { HeaderComponent } from './shared/header/header.component';
 
@@ -24,7 +25,8 @@ import { HeaderComponent } from './shared/header/header.component';
     HeaderComponent,
     AllContactsComponent,
     CreateContactComponent,
-    EditContactComponent
+    EditContactComponent,
+    DeleteContactComponent
   ],
   imports: [
     BrowserModule,
