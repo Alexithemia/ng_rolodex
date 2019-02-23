@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
+import { SelectService } from '../../services/select.service';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './createContact.component.html',
-  styleUrls: ['./createContact.component.scss']
+  templateUrl: './editContact.component.html',
+  styleUrls: ['./editContact.component.scss']
 })
 
-export class CreateContactComponent {
+export class EditContactComponent {
+  cardId: number = null;
 
   formData: {
     name: string,
@@ -33,13 +35,23 @@ export class CreateContactComponent {
 
   constructor(
     private backend: BackendService,
-    private router: Router
+    private router: Router,
+    private select: SelectService
   ) {
+    this.cardId = this.select.editId
+  }
 
+  ngOnInit() {
+    if (!this.select.editId) { return this.router.navigate(['allContacts']); }
+    this.backend.loadContact(this.select.editId)
+      .then((contactData: any) => {
+        this.formData = contactData;
+
+      })
   }
 
   submitForm() {
-    this.backend.addContact(this.formData)
+    this.backend.editContact(this.cardId, this.formData)
       .then(() => {
         return this.router.navigate(['allContacts']);
       })

@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local');
 router.route('/profile')
   .get(function (req, res) {
     User.where('id', req.user.id).fetch({
-      columns: ['id', 'username', 'name', 'email', 'address']
+      columns: ['username', 'name', 'email', 'address']
     })
       .then(function (user) {
         res.json(user);
@@ -21,6 +21,8 @@ router.route('/profile')
 
 router.route('/users')
   .put(function (req, res) {
+    console.log("edit user");
+
     User.where('id', req.user.id).save({
       name: req.body.name,
       email: req.body.email,

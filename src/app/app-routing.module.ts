@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CreateContactComponent } from './pages/createContact/createContact.component';
 import { AllContactsComponent } from './pages/allContacts/allContacts.component';
+import { EditContactComponent } from './pages/editContact/editContact.component';
 
 import { AccessGuard } from './services/accessGuard.service'
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'profile', canActivate: [AccessGuard], component: ProfileComponent },
   { path: 'createContact', canActivate: [AccessGuard], component: CreateContactComponent },
   { path: 'allContacts', canActivate: [AccessGuard], component: AllContactsComponent },
+  { path: 'editContact', canActivate: [AccessGuard], component: EditContactComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

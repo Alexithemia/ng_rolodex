@@ -39,6 +39,10 @@
         <label>Github: </label>
         <div>{{contact.github}}</div>
       </div>
+      <div class="buttonBox">
+        <button (click)="editContact(contact.id)">Edit</button>
+        <button (click)="deleteContact(contact.id)">Delete</button>
+      </div>
     </div>
   </div>
 </div>
