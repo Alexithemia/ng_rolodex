@@ -8,7 +8,7 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class AllContactsComponent implements OnInit {
-  contactList: object = []
+  contactList: object = [];
 
   constructor(
     private backend: BackendService
@@ -17,6 +17,9 @@ export class AllContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.contactList = this.backend.fullList();
+    this.backend.loadAllContacts()
+      .then((contacts) => {
+        this.contactList = contacts;
+      })
   }
 }

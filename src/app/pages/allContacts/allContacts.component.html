@@ -1,15 +1,44 @@
-<h1>All Contacts Page</h1>
+<h1>All Contacts</h1>
 
 <div *ngFor="let contact of contactList">
-  <div class="contactCard">
-    <div>Name: {{contact.name}}</div>
-    <div>Address: {{contact.address}}</div>
-    <div>Mobile: {{contact.mobile}}</div>
-    <div>Work: {{contact.work}}</div>
-    <div>Home: {{contact.home}}</div>
-    <div>Email: {{contact.email}}</div>
-    <div>Twitter: {{contact.twitter}}</div>
-    <div>Instagram: {{contact.instagram}}</div>
-    <div>Github: {{contact.github}}</div>
+  <div class="cardList">
+    <div class="contactCard">
+      <div class="contactLine">
+        <label> Name: </label>
+        <div>{{contact.name}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Address: </label>
+        <div>{{contact.address}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Mobile: </label>
+        <div>{{contact.mobile}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Work: </label>
+        <div>{{contact.work}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Home: </label>
+        <div>{{contact.home}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Email: </label>
+        <div>{{contact.email}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Twitter: </label>
+        <div>{{contact.twitter}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Instagram: </label>
+        <div>{{contact.instagram}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Github: </label>
+        <div>{{contact.github}}</div>
+      </div>
+    </div>
   </div>
 </div>
