@@ -1,0 +1,25 @@
+<div>
+  <h2>
+    <a routerLink="/">Rolodex</a>
+  </h2>
+  <ul [hidden]="!isLoggedIn()">
+    <li>
+      <h3>
+        <a routerLink="/allContacts">View All Contacts</a>
+      </h3>
+    </li>
+    <li>
+      <h3>
+        <a routerLink="/createContact">Create Contact</a>
+      </h3>
+    </li>
+    <li>
+      <h3>
+        <a routerLink="/profile">My Profile</a>
+      </h3>
+    </li>
+    <li>
+      <button (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</div>

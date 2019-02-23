@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
 const api = require('./routes/api');
 const redis = require('connect-redis')(session);
+const helmet = require('helmet');
 
 const User = require('./database/models/User');
 const app = express();
@@ -13,9 +14,9 @@ const PORT = process.env.SERVER_PORT;
 const ENV = process.env.NODE_ENV;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const REDIS_URI = process.env.REDIS_HOST + ':' + process.env.REDIS_HOST_PORT;
-const saltRounds = 12;
 
 app.use(express.static('./public'));
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(session({
   store: new redis({ url: REDIS_URI, logErrors: true }),
@@ -62,9 +63,9 @@ passport.use(new LocalStrategy(function (username, password, done) {
             if (res) { return done(null, user); }
             else {
               return done(null, false, { message: 'bad username or password' });
-            }
+            };
           });
-      }
+      };
     })
     .catch(err => {
       console.log('error: ', err);
@@ -72,47 +73,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
     });
 }));
 
-app.post('/register', (req, res) => {
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    if (err) { console.log(err); }
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      if (err) { console.log(err); }
-      return new User({
-        username: req.body.username,
-        password: hash,
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address
-      })
-        .save()
-        .then((user) => {
-          res.json({ success: true });
-        })
-        .catch((err) => {
-          console.log(err);
-          return res.status(500).json({ success: false, error: err });
-        });
-    });
-  });
-});
-
-app.post('/login', passport.authenticate('local'), function (req, res) {
-  res.json({ success: true, id: req.user.id });
-});
-
-app.get('/logout', isAuthenticated, (req, res) => {
-  req.logout();
-  res.json({ success: true });
-});
-
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { next(); }
-  else {
-    res.status(401).json({ success: false, error: 'not authenticated' });
-  };
-};
-
-app.use('/api', isAuthenticated, api);
+app.use('/api', api);
 
 app.listen(PORT, function () {
   console.log(`Server running on port: ${PORT}`);

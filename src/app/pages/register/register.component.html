@@ -1,0 +1,42 @@
+<h1>Register</h1>
+
+<form>
+  <div>
+    <label for="username">Username:</label>
+  </div>
+  <input type="text" name="username" [class.error]="isUsernameInvalid && username.touched" [(ngModel)]="formData.username"
+    (keyup)="validateUsername()" #username="ngModel" />
+
+  <div [hidden]="!(isUsernameInvalid && username.touched)">
+    Username is not valid
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+  </div>
+  <input type="password" name="password" [class.error]="isPasswordInvalid && password.touched" [(ngModel)]="formData.password"
+    (keyup)="validatePassword()" #password="ngModel" />
+
+  <div [hidden]="!(isPasswordInvalid && password.touched)">
+    Password is not valid
+  </div>
+
+  <div>
+    <label for="name">Name:</label>
+  </div>
+  <input type="text" name="name" [(ngModel)]="formData.name" #name="ngModel" />
+
+  <div>
+    <label for="email">Email:</label>
+  </div>
+  <input type="text" name="email" [(ngModel)]="formData.email" #email="ngModel" />
+
+  <div>
+    <label for="address">Address:</label>
+  </div>
+  <input type="text" name="address" [(ngModel)]="formData.address" #address="ngModel" />
+
+  <div>
+    <button (click)="submitForm()" [disabled]="isUsernameInvalid || isPasswordInvalid">Submit</button>
+  </div>
+</form>
