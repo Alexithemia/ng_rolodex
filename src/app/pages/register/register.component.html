@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<h1>Register</h1>
 
 <form>
   <div>
@@ -22,11 +22,21 @@
   </div>
 
   <div>
-    <button (click)="submitForm()" [disabled]="isUsernameInvalid || isPasswordInvalid">Submit</button>
+    <label for="name">Name:</label>
   </div>
+  <input type="text" name="name" [(ngModel)]="formData.name" #name="ngModel" />
 
   <div>
-    <button (click)="register()">Register new account</button>
+    <label for="email">Email:</label>
   </div>
+  <input type="text" name="email" [(ngModel)]="formData.email" #email="ngModel" />
 
+  <div>
+    <label for="address">Address:</label>
+  </div>
+  <input type="text" name="address" [(ngModel)]="formData.address" #address="ngModel" />
+
+  <div>
+    <button (click)="submitForm()" [disabled]="isUsernameInvalid || isPasswordInvalid">Submit</button>
+  </div>
 </form>

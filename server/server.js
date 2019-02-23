@@ -13,7 +13,6 @@ const PORT = process.env.SERVER_PORT;
 const ENV = process.env.NODE_ENV;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const REDIS_URI = process.env.REDIS_HOST + ':' + process.env.REDIS_HOST_PORT;
-const saltRounds = 12;
 
 app.use(express.static('./public'));
 app.use(bodyParser.json());

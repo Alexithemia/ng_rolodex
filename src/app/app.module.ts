@@ -9,6 +9,7 @@ import { AppComponent } from './app/app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { CreateContactComponent } from './pages/createContact/createContact.component';
 import { AllContactsComponent } from './pages/allContacts/allContacts.component';
 import { EditContactComponent } from './pages/editContact/editContact.component';
@@ -22,6 +23,7 @@ import { HeaderComponent } from './shared/header/header.component';
     HomeComponent,
     ProfileComponent,
     LoginComponent,
+    RegisterComponent,
     HeaderComponent,
     AllContactsComponent,
     CreateContactComponent,

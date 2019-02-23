@@ -4,7 +4,8 @@ const contacts = require('./contacts');
 const User = require('../database/models/User');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-const LocalStrategy = require('passport-local');
+
+const saltRounds = 12;
 
 router.route('/profile')
   .get(function (req, res) {
@@ -21,8 +22,6 @@ router.route('/profile')
 
 router.route('/users')
   .put(function (req, res) {
-    console.log("edit user");
-
     User.where('id', req.user.id).save({
       name: req.body.name,
       email: req.body.email,

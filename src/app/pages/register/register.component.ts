@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
 
-export class LoginComponent {
+export class RegisterComponent {
   formData: {
     username: string,
     password: string,
@@ -20,8 +19,7 @@ export class LoginComponent {
   isPasswordInvalid: boolean = true;
 
   constructor(
-    private auth: AuthService,
-    private router: Router
+    private auth: AuthService
   ) {
 
   }
@@ -41,10 +39,6 @@ export class LoginComponent {
   }
 
   submitForm() {
-    return this.auth.login(this.formData);
-  }
-
-  register() {
-    return this.router.navigate(['register']);
+    return this.auth.register(this.formData);
   }
 }
