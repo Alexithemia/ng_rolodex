@@ -14,10 +14,10 @@ export class ProfileComponent implements OnInit {
     email: string,
     address: string
   } = {
-      username: 'alexithemia',
-      name: 'Tyler',
-      email: 'dude@gmail.com',
-      address: 'kapolei'
+      username: '',
+      name: '',
+      email: '',
+      address: ''
     };
 
   showEdit: boolean = false;

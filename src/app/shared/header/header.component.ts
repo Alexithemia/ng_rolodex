@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BackendService } from '../../services/backend.service';
+import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SessionService } from '../../services/session.service';
 
 export class HeaderComponent {
 
-  constructor(private session: SessionService, private backend: BackendService) {
+  constructor(private session: SessionService, private auth: AuthService) {
 
   }
 
@@ -19,6 +19,6 @@ export class HeaderComponent {
   }
 
   logout() {
-    return this.backend.logout();
+    return this.auth.logout();
   }
 }

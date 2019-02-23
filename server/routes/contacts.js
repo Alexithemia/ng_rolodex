@@ -3,8 +3,15 @@ const router = express.Router();
 const Contact = require('../database/models/Contact');
 const User = require('../database/models/User');
 
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { next(); }
+  else {
+    res.status(401).json({ success: false, error: 'not authenticated' });
+  };
+};
+
 router.route('/')
-  .get(function (req, res) {
+  .get(isAuthenticated, function (req, res) {
     Contact.where('created_by', req.user.id).fetchAll({
       columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
     })
@@ -15,7 +22,7 @@ router.route('/')
         res.json(err);
       });
   })
-  .post(function (req, res) {
+  .post(isAuthenticated, function (req, res) {
     Contact.forge({
       name: req.body.name,
       address: req.body.address,
@@ -37,7 +44,7 @@ router.route('/')
   })
 
 router.route('/search/:term')
-  .get(function (req, res) {
+  .get(isAuthenticated, function (req, res) {
     Contact.query(function (search) {
       search.where('created_by', req.user.id)
         .andWhere(function () {
@@ -64,7 +71,7 @@ router.route('/search/:term')
   });
 
 router.route('/:id')
-  .get(function (req, res) {
+  .get(isAuthenticated, function (req, res) {
     Contact.where('id', req.params.id).fetch({
       columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
     })
@@ -75,7 +82,7 @@ router.route('/:id')
         res.json({ success: false, error: err })
       });
   })
-  .put(function (req, res) {
+  .put(isAuthenticated, function (req, res) {
     let tempObj = {}
     if (req.body.name) { tempObj.name = req.body.name };
     if (req.body.address) { tempObj.address = req.body.address };
@@ -95,7 +102,7 @@ router.route('/:id')
         res.json({ success: false, error: err });
       });
   })
-  .delete(function (req, res) {
+  .delete(isAuthenticated, function (req, res) {
     new Contact({ id: req.params.id }).destroy()
       .then(function () {
         res.json({ success: true });

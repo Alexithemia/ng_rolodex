@@ -72,47 +72,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
     });
 }));
 
-app.post('/register', (req, res) => {
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    if (err) { console.log(err); }
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      if (err) { console.log(err); }
-      return new User({
-        username: req.body.username,
-        password: hash,
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address
-      })
-        .save()
-        .then((user) => {
-          res.json({ success: true });
-        })
-        .catch((err) => {
-          console.log(err);
-          return res.status(500).json({ success: false, error: err });
-        });
-    });
-  });
-});
-
-app.post('/login', passport.authenticate('local'), function (req, res) {
-  res.json({ success: true, id: req.user.id });
-});
-
-app.get('/logout', isAuthenticated, (req, res) => {
-  req.logout();
-  res.json({ success: true });
-});
-
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { next(); }
-  else {
-    res.status(401).json({ success: false, error: 'not authenticated' });
-  };
-};
-
-app.use('/api', isAuthenticated, api);
+app.use('/api', api);
 
 app.listen(PORT, function () {
   console.log(`Server running on port: ${PORT}`);

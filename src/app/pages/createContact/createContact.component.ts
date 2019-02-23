@@ -35,8 +35,7 @@ export class CreateContactComponent {
   }
 
   submitForm() {
-    console.log(this.formData);
-
+    //send form data
   }
 
 }

@@ -41,8 +41,6 @@ export class SessionService {
 
     let userString = JSON.stringify(this.user);
     localStorage.setItem('user', userString);
-
-    this.router.navigate(['']);
   }
 
   clearSession() {

@@ -12,9 +12,9 @@ import { AccessGuard } from './services/accessGuard.service'
 const routes: Routes = [
   { path: '', canActivate: [AccessGuard], component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'createContact', component: CreateContactComponent },
-  { path: 'allContacts', component: AllContactsComponent },
+  { path: 'profile', canActivate: [AccessGuard], component: ProfileComponent },
+  { path: 'createContact', canActivate: [AccessGuard], component: CreateContactComponent },
+  { path: 'allContacts', canActivate: [AccessGuard], component: AllContactsComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

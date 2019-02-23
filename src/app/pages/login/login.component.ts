@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { BackendService } from '../../services/backend.service';
-// import { HeaderComponent } from '../../shared/header/header.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -20,8 +19,7 @@ export class LoginComponent {
   isPasswordInvalid: boolean = true;
 
   constructor(
-    private backend: BackendService,
-    // private header: HeaderComponent
+    private auth: AuthService,
   ) {
 
   }
@@ -41,10 +39,6 @@ export class LoginComponent {
   }
 
   submitForm() {
-    // send backend
-    console.log(this.formData.username);
-    console.log(this.formData.password);
-    // this.header.login();
-    return this.backend.login(this.formData.username, this.formData.password)
+    return this.auth.login(this.formData);
   }
 }

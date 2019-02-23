@@ -1,35 +1,61 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SessionService } from './session.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
-  // url: string = 'https://localhost:4200';
-
-  constructor(
-    private http: HttpClient,
-    private session: SessionService
-  ) {
-
+  constructor(private http: HttpClient) {
   }
 
-  login(username, password) {
-    //send login info to server, 
-    return this.session.setSession(1, username); //on success return this
-    //on fail return to login with error message
+  //auth
+  register(userData) {
+    return this.http.post('/api/register', userData).toPromise();
+  }
+
+  login(loginData) {
+    return this.http.post("/api/login", loginData).toPromise();
   }
 
   logout() {
-    return this.session.clearSession();
+    return this.http.get("/api/logout").toPromise();
   }
 
-  loadAllContacts() {
-    console.log('load all contacts from server');
+  //profile
+  loadProfile() {
+    return this.http.get("/api/profile").toPromise();
   }
 
   editProfile(userData) {
-    console.log('Edit user to ', userData);
+    return this.http.put('/api/users', userData).toPromise();
+  }
+
+  //contacts
+  searchContacts(term) {
+    const search = '/api/contacts/search/' + term;
+    return this.http.get(search).toPromise();
+  }
+
+  loadAllContacts() {
+    return this.http.get("/api/contacts").toPromise();
+  }
+
+  loadContact(contactId) {
+    const contactUrl = '/api/contacts/' + contactId;
+    return this.http.get(contactUrl).toPromise();
+  }
+
+  addContact(contactData) {
+    return this.http.post("/api/contacts", contactData).toPromise();
+  }
+
+  editContact(contactId, contactData) {
+    const editContactUrl = '/api/contacts/' + contactId;
+    return this.http.put(editContactUrl, contactData).toPromise();
+  }
+
+  deleteContact(contactId) {
+    const deleteContactUrl = '/api/contacts/' + contactId;
+    return this.http.delete(deleteContactUrl).toPromise();
   }
 }
