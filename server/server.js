@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
 const api = require('./routes/api');
 const redis = require('connect-redis')(session);
+const helmet = require('helmet');
 
 const User = require('./database/models/User');
 const app = express();
@@ -15,6 +16,7 @@ const SESSION_SECRET = process.env.SESSION_SECRET;
 const REDIS_URI = process.env.REDIS_HOST + ':' + process.env.REDIS_HOST_PORT;
 
 app.use(express.static('./public'));
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(session({
   store: new redis({ url: REDIS_URI, logErrors: true }),
@@ -61,9 +63,9 @@ passport.use(new LocalStrategy(function (username, password, done) {
             if (res) { return done(null, user); }
             else {
               return done(null, false, { message: 'bad username or password' });
-            }
+            };
           });
-      }
+      };
     })
     .catch(err => {
       console.log('error: ', err);

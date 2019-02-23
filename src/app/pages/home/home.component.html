@@ -1,11 +1,13 @@
-<form>
-  <div>
-    <label for="search">Search your Rolodex</label>
-  </div>
-  <input type="text" name="search" [(ngModel)]="formData.searchString" #search="ngModel" />
+<div class="formBox">
+  <form>
+    <div>
+      <label for="search">Search your Rolodex</label>
+    </div>
+    <input type="text" name="search" [(ngModel)]="formData.searchString" #search="ngModel" />
 
-  <button (click)="sendSearch()">Search</button>
-</form>
+    <button (click)="sendSearch()">Search</button>
+  </form>
+</div>
 
 <div *ngFor="let contact of contactList">
   <div class="cardList">

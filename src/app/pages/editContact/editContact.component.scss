@@ -6,8 +6,7 @@ form{
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  max-width: 400px;
-  width: 100%;
+  width: 400px;
   margin: auto;
   background-color: #ccc;
   padding: 15px;
@@ -16,7 +15,7 @@ form{
 .inputLine{
   display: flex;
   margin: 2px;
-  width: 30vw;
+  width: 350px;
   justify-content: space-between;
 }
 

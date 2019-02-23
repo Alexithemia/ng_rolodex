@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
-import { SelectService } from '../../services/select.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './editContact.component.html',
@@ -36,24 +35,24 @@ export class EditContactComponent implements OnInit {
   constructor(
     private backend: BackendService,
     private router: Router,
-    private select: SelectService
+    private route: ActivatedRoute,
   ) {
-    this.cardId = this.select.editId
-  }
+    this.cardId = Number(this.route.snapshot.paramMap.get('id'));
+  };
 
   ngOnInit() {
-    if (!this.select.editId) { return this.router.navigate(['allContacts']); }
-    this.backend.loadContact(this.select.editId)
+    let id = Number(this.route.snapshot.paramMap.get('id'));
+    if (!id) { return this.router.navigate(['allContacts']); };
+    this.backend.loadContact(id)
       .then((contactData: any) => {
         this.formData = contactData;
       })
-  }
+  };
 
   submitForm() {
     this.backend.editContact(this.cardId, this.formData)
       .then(() => {
         return this.router.navigate(['allContacts']);
-      })
-  }
-
-}
+      });
+  };
+};

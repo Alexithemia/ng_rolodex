@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
-import { SelectService } from '../../services/select.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +19,6 @@ export class HomeComponent {
 
   constructor(
     private backend: BackendService,
-    private select: SelectService,
     private router: Router
   ) {
 
@@ -36,12 +34,10 @@ export class HomeComponent {
   }
 
   editContact(id) {
-    this.select.setEditId(id);
-    return this.router.navigate(['editContact']);
+    return this.router.navigate([`editContact/${id}`]);
   }
 
   deleteContact(id) {
-    this.select.setDeleteId(id);
-    return this.router.navigate(['deleteContact']);
+    return this.router.navigate([`deleteContact/${id}`]);
   }
 }

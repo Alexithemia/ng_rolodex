@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
-import { SelectService } from '../../services/select.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './deleteContact.component.html',
@@ -36,14 +35,15 @@ export class DeleteContactComponent implements OnInit {
   constructor(
     private backend: BackendService,
     private router: Router,
-    private select: SelectService
+    private route: ActivatedRoute,
   ) {
-    this.cardId = this.select.deleteId
+    this.cardId = Number(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() {
-    if (!this.select.deleteId) { return this.router.navigate(['allContacts']); }
-    this.backend.loadContact(this.select.deleteId)
+    let id = Number(this.route.snapshot.paramMap.get('id'));
+    if (!id) { return this.router.navigate(['allContacts']); }
+    this.backend.loadContact(id)
       .then((contactData: any) => {
         this.pageData = contactData;
       })

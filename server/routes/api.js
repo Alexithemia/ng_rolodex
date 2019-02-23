@@ -37,9 +37,13 @@ router.route('/users')
 
 router.post('/register', (req, res) => {
   bcrypt.genSalt(saltRounds, (err, salt) => {
-    if (err) { console.log(err); }
+    if (err) {
+      return res.status(500).json({ success: false, error: err })
+    }
     bcrypt.hash(req.body.password, salt, (err, hash) => {
-      if (err) { console.log(err); }
+      if (err) {
+        return res.status(500).json({ success: false, error: err })
+      }
       return new User({
         username: req.body.username,
         password: hash,

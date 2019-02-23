@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'profile', canActivate: [AccessGuard], component: ProfileComponent },
   { path: 'createContact', canActivate: [AccessGuard], component: CreateContactComponent },
   { path: 'allContacts', canActivate: [AccessGuard], component: AllContactsComponent },
-  { path: 'editContact', canActivate: [AccessGuard], component: EditContactComponent },
-  { path: 'deleteContact', canActivate: [AccessGuard], component: DeleteContactComponent },
+  { path: 'editContact/:id', canActivate: [AccessGuard], component: EditContactComponent },
+  { path: 'deleteContact/:id', canActivate: [AccessGuard], component: DeleteContactComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
