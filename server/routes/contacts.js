@@ -60,7 +60,7 @@ router.route('/search/:term')
             .orWhereRaw('LOWER(github) LIKE ?', term)
         })
     }).fetchAll({
-      columns: ['name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
+      columns: ['id', 'name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
     })
       .then(function (contactList) {
         res.json(contactList);

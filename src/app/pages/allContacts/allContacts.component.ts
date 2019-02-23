@@ -33,8 +33,6 @@ export class AllContactsComponent implements OnInit {
 
   deleteContact(id) {
     this.select.setDeleteId(id);
-    console.log(this.select.deleteId);
-
     return this.router.navigate(['deleteContact']);
   }
 }
