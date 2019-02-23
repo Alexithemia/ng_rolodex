@@ -41,9 +41,8 @@ export class DeleteContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id = Number(this.route.snapshot.paramMap.get('id'));
-    if (!id) { return this.router.navigate(['allContacts']); }
-    this.backend.loadContact(id)
+    if (!this.cardId) { return this.router.navigate(['allContacts']); }
+    this.backend.loadContact(this.cardId)
       .then((contactData: any) => {
         this.pageData = contactData;
       })
