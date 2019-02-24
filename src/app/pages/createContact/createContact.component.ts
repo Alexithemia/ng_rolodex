@@ -47,18 +47,21 @@ export class CreateContactComponent {
   validateMobile() {
     const { mobile } = this.formData;
     if (mobile.length < 10 && mobile) { this.isMobileInvalid = true }
+    else if (mobile.match(/[^-0-9]/gi) && mobile) { this.isMobileInvalid = true }
     else { this.isMobileInvalid = false }
   }
 
   validateWork() {
     const { work } = this.formData;
     if (work.length < 10 && work) { this.isWorkInvalid = true }
+    else if (work.match(/[^-0-9]/gi) && work) { this.isWorkInvalid = true }
     else { this.isWorkInvalid = false }
   }
 
   validateHome() {
     const { home } = this.formData;
     if (home.length < 10 && home) { this.isHomeInvalid = true }
+    else if (home.match(/[^-0-9]/gi) && home) { this.isHomeInvalid = true }
     else { this.isHomeInvalid = false }
   }
 

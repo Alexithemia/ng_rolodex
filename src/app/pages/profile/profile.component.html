@@ -1,11 +1,13 @@
 <h1>Profile Page</h1>
 
-<div class="profileBox">
-  <div><label>Username: </label>{{pageData.username}}</div>
-  <div><label>Name: </label>{{pageData.name}}</div>
-  <div><label>Email: </label>{{pageData.email}}</div>
-  <div><label>Address: </label>{{pageData.address}}</div>
-  <button (click)="showEditor()">Edit?</button>
+<div class="profileContainer">
+  <div class="profileBox">
+    <div><label>Username: </label>{{pageData.username}}</div>
+    <div><label>Name: </label>{{pageData.name}}</div>
+    <div><label>Email: </label>{{pageData.email}}</div>
+    <div><label>Address: </label>{{pageData.address}}</div>
+    <button (click)="showEditor()">Edit?</button>
+  </div>
 </div>
 
 <div [hidden]="!showEdit">
@@ -21,10 +23,11 @@
       </div>
       <div class='inputLine'>
         <label for="email">Email:</label>
-        <input type="text" name="email" [(ngModel)]="formData.email" #email="ngModel" />
+        <input type="text" name="email" [(ngModel)]="formData.email" [class.error]="isEmailInvalid && email.touched"
+          (keyup)="validateEmail()" #email="ngModel" />
       </div>
       <div>
-        <button (click)="submitEdit()">Submit</button>
+        <button (click)="submitEdit()" [disabled]="isEmailInvalid">Submit</button>
         <button (click)="showEditor()">Close</button>
       </div>
     </form>
