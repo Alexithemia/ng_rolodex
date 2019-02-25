@@ -29,7 +29,8 @@
   <div>
     <label for="email">Email:</label>
   </div>
-  <input type="text" name="email" [(ngModel)]="formData.email" #email="ngModel" />
+  <input type="text" name="email" [(ngModel)]="formData.email" [class.error]="isEmailInvalid && email.touched" (keyup)="validateEmail()"
+    #email="ngModel" />
 
   <div>
     <label for="address">Address:</label>
@@ -37,6 +38,6 @@
   <input type="text" name="address" [(ngModel)]="formData.address" #address="ngModel" />
 
   <div>
-    <button (click)="submitForm()" [disabled]="isUsernameInvalid || isPasswordInvalid">Submit</button>
+    <button (click)="submitForm()" [disabled]="isUsernameInvalid || isPasswordInvalid || isEmailInvalid">Submit</button>
   </div>
 </form>

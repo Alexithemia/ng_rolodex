@@ -56,7 +56,6 @@ router.post('/register', (req, res) => {
           res.json({ success: true });
         })
         .catch((err) => {
-          console.log(err);
           return res.status(500).json({ success: false, error: err });
         });
     });

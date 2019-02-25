@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Contact = require('../database/models/Contact');
-const User = require('../database/models/User');
 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
@@ -9,6 +8,26 @@ function isAuthenticated(req, res, next) {
     res.status(401).json({ success: false, error: 'not authenticated' });
   };
 };
+
+function inputValidation(req, res, next) {
+  if (!req.body.name) {
+    return res.json({ error: "Contact requires a name" })
+  }
+  if (req.body.email && req.body.email.includes('@') && req.body.email.includes('.')) { }
+  else {
+    return res.json({ error: "Contact email incorrect format" })
+  }
+  if (req.body.home && req.body.home.length < 10 || req.body.home && req.body.home.match(/[^-0-9]/gi)) {
+    return res.json({ error: "Contact home number incorrect format" })
+  }
+  if (req.body.mobile && req.body.mobile.length < 10 || req.body.mobile && req.body.mobile.match(/[^-0-9]/gi)) {
+    return res.json({ error: "Contact mobile number incorrect format" })
+  }
+  if (req.body.work && req.body.work.length < 10 || req.body.work && req.body.work.match(/[^-0-9]/gi)) {
+    return res.json({ error: "Contact work number incorrect format" })
+  }
+  next();
+}
 
 router.route('/')
   .get(isAuthenticated, function (req, res) {
@@ -22,7 +41,7 @@ router.route('/')
         res.json(err);
       });
   })
-  .post(isAuthenticated, function (req, res) {
+  .post(isAuthenticated, inputValidation, function (req, res) {
     Contact.forge({
       name: req.body.name,
       address: req.body.address,
@@ -82,7 +101,7 @@ router.route('/:id')
         res.json({ success: false, error: err })
       });
   })
-  .put(isAuthenticated, function (req, res) {
+  .put(isAuthenticated, inputValidation, function (req, res) {
     let tempObj = {}
     if (req.body.name) { tempObj.name = req.body.name };
     if (req.body.address) { tempObj.address = req.body.address };
