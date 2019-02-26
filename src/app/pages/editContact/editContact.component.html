@@ -3,7 +3,8 @@
 <form>
   <div class='inputLine'>
     <label for="name">Name:</label>
-    <input type="text" name="name" [(ngModel)]="formData.name" #name="ngModel" />
+    <input type="text" name="name" [(ngModel)]="formData.name" [class.error]="isNameInvalid && name.touched" (keyup)="validateName()"
+      #name="ngModel" />
   </div>
   <div class='inputLine'>
     <label for="address">Address:</label>
@@ -11,19 +12,23 @@
   </div>
   <div class='inputLine'>
     <label for="mobile">Mobile:</label>
-    <input type="text" name="mobile" [(ngModel)]="formData.mobile" #mobile="ngModel" />
+    <input type="text" name="mobile" [(ngModel)]="formData.mobile" [class.error]="isMobileInvalid && mobile.touched"
+      (keyup)="validateMobile()" #mobile="ngModel" />
   </div>
   <div class='inputLine'>
     <label for="work">Work:</label>
-    <input type="text" name="work" [(ngModel)]="formData.work" #work="ngModel" />
+    <input type="text" name="work" [(ngModel)]="formData.work" [class.error]="isWorkInvalid && work.touched" (keyup)="validateWork()"
+      #work="ngModel" />
   </div>
   <div class='inputLine'>
     <label for="home">Home:</label>
-    <input type="text" name="home" [(ngModel)]="formData.home" #home="ngModel" />
+    <input type="text" name="home" [(ngModel)]="formData.home" [class.error]="isHomeInvalid && home.touched" (keyup)="validateHome()"
+      #home="ngModel" />
   </div>
   <div class='inputLine'>
     <label for="email">Email:</label>
-    <input type="text" name="email" [(ngModel)]="formData.email" #email="ngModel" />
+    <input type="text" name="email" [(ngModel)]="formData.email" [class.error]="isEmailInvalid && email.touched"
+      (keyup)="validateEmail()" #email="ngModel" />
   </div>
   <div class='inputLine'>
     <label for="twitter">Twitter:</label>
@@ -38,6 +43,6 @@
     <input type="text" name="github" [(ngModel)]="formData.github" #github="ngModel" />
   </div>
   <div>
-    <button (click)="submitForm()">Submit</button>
+    <button (click)="submitForm()" [disabled]="isNameInvalid || isMobileInvalid  || isWorkInvalid  || isHomeInvalid  || isEmailInvalid">Submit</button>
   </div>
 </form>

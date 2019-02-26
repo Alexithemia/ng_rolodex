@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit {
       address: ''
     };
 
+  isEmailInvalid: boolean = false;
+
   constructor(
     private backend: BackendService,
     private router: Router
@@ -45,6 +47,12 @@ export class ProfileComponent implements OnInit {
       .then((userData: any) => {
         this.pageData = userData;
       })
+  }
+
+  validateEmail() {
+    const { email } = this.formData;
+    if (!email.includes('@') && !email.includes('.') && email) { this.isEmailInvalid = true }
+    else { this.isEmailInvalid = false }
   }
 
   showEditor() {

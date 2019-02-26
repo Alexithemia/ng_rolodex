@@ -10,13 +10,21 @@ export class RegisterComponent {
   formData: {
     username: string,
     password: string,
+    name: string,
+    email: string,
+    address: string
   } = {
       username: '',
       password: '',
+      name: '',
+      email: '',
+
+      address: ''
     };
 
   isUsernameInvalid: boolean = true;
   isPasswordInvalid: boolean = true;
+  isEmailInvalid: boolean = false;
 
   constructor(
     private auth: AuthService
@@ -37,6 +45,13 @@ export class RegisterComponent {
     else if (username.length < 3) { this.isUsernameInvalid = true }
     else { this.isUsernameInvalid = false }
   }
+
+  validateEmail() {
+    const { email } = this.formData;
+    if (!email.includes('@') && !email.includes('.') && email) { this.isEmailInvalid = true }
+    else { this.isEmailInvalid = false }
+  }
+
 
   submitForm() {
     return this.auth.register(this.formData);
