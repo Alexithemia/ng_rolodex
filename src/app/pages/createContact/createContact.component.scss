@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+}
+
+form{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 400px;
+  margin: auto;
+  background-color: #ccc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.inputLine{
+  display: flex;
+  margin: 2px;
+  width: 350px;
+  justify-content: space-between;
+}
+
+button{
+  margin: 2px;
+}
+
+.error{
+  border: 1px solid red;
+}

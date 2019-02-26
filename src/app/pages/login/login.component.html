@@ -1,0 +1,32 @@
+<h1>Login</h1>
+
+<form>
+  <div>
+    <label for="username">Username:</label>
+  </div>
+  <input type="text" name="username" [class.error]="isUsernameInvalid && username.touched" [(ngModel)]="formData.username"
+    (keyup)="validateUsername()" #username="ngModel" />
+
+  <div [hidden]="!(isUsernameInvalid && username.touched)">
+    Username is not valid
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+  </div>
+  <input type="password" name="password" [class.error]="isPasswordInvalid && password.touched" [(ngModel)]="formData.password"
+    (keyup)="validatePassword()" #password="ngModel" />
+
+  <div [hidden]="!(isPasswordInvalid && password.touched)">
+    Password is not valid
+  </div>
+
+  <div>
+    <button (click)="submitForm()" [disabled]="isUsernameInvalid || isPasswordInvalid">Submit</button>
+  </div>
+
+  <div>
+    <button (click)="register()">Register new account</button>
+  </div>
+
+</form>

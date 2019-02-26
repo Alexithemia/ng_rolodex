@@ -1,0 +1,44 @@
+<h1>Delete Contact</h1>
+
+<h3>Are you sure you want to delete this Contact?</h3>
+<div class="container">
+  <div class="contactCard">
+    <div class="contactLine">
+      <label> Name: </label>
+      <div>{{pageData.name}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Address: </label>
+      <div>{{pageData.address}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Mobile: </label>
+      <div>{{pageData.mobile}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Work: </label>
+      <div>{{pageData.work}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Home: </label>
+      <div>{{pageData.home}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Email: </label>
+      <div>{{pageData.email}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Twitter: </label>
+      <div>{{pageData.twitter}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Instagram: </label>
+      <div>{{pageData.instagram}}</div>
+    </div>
+    <div class="contactLine">
+      <label>Github: </label>
+      <div>{{pageData.github}}</div>
+    </div>
+    <button (click)="submitDelete()">Delete</button>
+  </div>
+</div>

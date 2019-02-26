@@ -1,0 +1,57 @@
+<div class="formBox">
+  <form>
+    <div>
+      <label for="search">Search your Rolodex</label>
+    </div>
+    <input type="text" name="search" [(ngModel)]="formData.searchString" #search="ngModel" />
+
+    <button (click)="sendSearch()">Search</button>
+  </form>
+</div>
+
+<div *ngFor="let contact of contactList">
+  <div class="cardList">
+    <div class="contactCard">
+      <div class="contactLine">
+        <label> Name: </label>
+        <div>{{contact.name}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Address: </label>
+        <div>{{contact.address}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Mobile: </label>
+        <div>{{contact.mobile}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Work: </label>
+        <div>{{contact.work}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Home: </label>
+        <div>{{contact.home}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Email: </label>
+        <div>{{contact.email}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Twitter: </label>
+        <div>{{contact.twitter}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Instagram: </label>
+        <div>{{contact.instagram}}</div>
+      </div>
+      <div class="contactLine">
+        <label>Github: </label>
+        <div>{{contact.github}}</div>
+      </div>
+      <div class="buttonBox">
+        <button (click)="editContact(contact.id)">Edit</button>
+        <button (click)="deleteContact(contact.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
